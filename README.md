@@ -10,26 +10,26 @@
 
 ```bash
 # 免全局安装
-npx cdp-shot@0.1.0 https://example.com out.png 1440 900
+npx --package=cdp-shot@0.1.1 cdps https://example.com out.png 1440 900
 
 # 或安装后使用
 npm install -g cdp-shot
-cdp-shot https://example.com out.png 1440 900
+cdps https://example.com out.png 1440 900
 
 # 整页、手机视口与暗色模拟
-cdp-shot https://example.com full.png 1440 900 --full --scale 1
-cdp-shot https://example.com mobile.png 390 844 --scheme dark
+cdps https://example.com full.png 1440 900 --full --scale 1
+cdps https://example.com mobile.png 390 844 --scheme dark
 
 # 按元素矩形取景；坐标是 CSS 像素，矩形外的部分不会入图
-cdp-shot https://example.com element.png 1440 900 --scale 1 \
+cdps https://example.com element.png 1440 900 --scale 1 \
   --eval '(()=>{const r=document.querySelector("main").getBoundingClientRect();return {x:r.x,y:r.y+scrollY,width:r.width,height:r.height};})()'
 
 # 指定浏览器、复用登录 profile、调整 CDP 超时
-cdp-shot https://example.com out.png 1440 900 \
+cdps https://example.com out.png 1440 900 \
   --browser 'C:/path/to/chrome.exe' --profile-dir 'F:/temp/my-profile' --timeout 180000
 ```
 
-命令契约：`cdp-shot <url> <out.png> <width> <height> [选项]`。也继续支持仓库内的旧调用：`node ~/.claude/skills/screenshot/cdp-shot.js ...`。
+命令契约：`cdps <url> <out.png> <width> <height> [选项]`。`cdp-shot` 是同功能的兼容别名；也继续支持仓库内的旧调用：`node ~/.claude/skills/screenshot/cdp-shot.js ...`。
 
 | 选项 | 说明 |
 |---|---|

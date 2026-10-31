@@ -1,12 +1,13 @@
 {
   "name": "cdp-shot",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Zero-dependency webpage screenshots through Chrome DevTools Protocol",
   "author": "yeyangchen2009",
   "license": "MIT",
   "private": false,
   "type": "commonjs",
   "bin": {
+    "cdps": "./cdp-shot.js",
     "cdp-shot": "./cdp-shot.js"
   },
   "files": [
