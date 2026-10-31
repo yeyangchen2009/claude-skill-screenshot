@@ -3,7 +3,7 @@
  * cdp-shot.js —— 零依赖无头浏览器截图器（Node ≥ 22，内置 WebSocket）
  *
  * 用法:
- *   cdp-shot <url> <out.png> <width> <height> [选项]
+ *   cdps <url> <out.png> <width> <height> [选项]
  *   node cdp-shot.js <url> <out.png> <width> <height> [选项]
  */
 'use strict';
@@ -20,7 +20,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const HELP = `cdp-shot ${pkg.version} —— 零依赖 CDP 网页截图器
 
 用法:
-  cdp-shot <url> <out.png> <width> <height> [选项]
+  cdps <url> <out.png> <width> <height> [选项]
 
 选项:
   --theme <light|dark>   主题注入（dark 会写 localStorage 后重载，默认 light）
@@ -53,10 +53,10 @@ const HELP = `cdp-shot ${pkg.version} —— 零依赖 CDP 网页截图器
   CDP_SHOT_TEMP          自动临时 profile 的父目录（其次 TMPDIR、系统临时目录）
 
 示例:
-  cdp-shot https://example.com out.png 1440 900
-  cdp-shot https://example.com full.png 1440 900 --full --scale 1
-  cdp-shot https://example.com mobile.png 390 844 --scheme dark
-  cdp-shot file:///D:/work/card.html card.png 1080 1440 --scale 1 --settle 600
+  cdps https://example.com out.png 1440 900
+  cdps https://example.com full.png 1440 900 --full --scale 1
+  cdps https://example.com mobile.png 390 844 --scheme dark
+  cdps file:///D:/work/card.html card.png 1080 1440 --scale 1 --settle 600
 
 只截网页内容，不截浏览器地址栏、桌面或其他软件窗口。`;
 
@@ -77,7 +77,7 @@ function parseArgs(argv) {
 
     const [url, out, w, h] = argv;
     if (!url || !out || !w || !h) {
-        throw new UsageError('用法: cdp-shot <url> <out.png> <width> <height> [选项]');
+        throw new UsageError('用法: cdps <url> <out.png> <width> <height> [选项]');
     }
 
     const withValue = new Set(['theme', 'theme-key', 'theme-value', 'scale', 'css',

@@ -81,7 +81,7 @@ node ~/.claude/skills/screenshot/cdp-shot.js <url> <out.png> <width> <height> [�
 #   --headed                 有头模式；--keep-open --done-flag <f> 截图后保活，标志文件出现才退出
 ```
 
-npm 安装后可把 `node ~/.claude/skills/screenshot/cdp-shot.js` 换成 `cdp-shot`；免安装执行为 `npx cdp-shot@0.1.0 <url> <out.png> <width> <height> [选项]`。旧路径和全部位置参数保持兼容。
+npm 安装后可把 `node ~/.claude/skills/screenshot/cdp-shot.js` 换成短命令 `cdps`，旧命令 `cdp-shot` 仍可用；免安装执行为 `npx --package=cdp-shot@0.1.1 cdps <url> <out.png> <width> <height> [选项]`。旧路径和全部位置参数保持兼容。
 
 - `--timeout 180000`：单次 CDP 请求/`--eval` Promise 的超时毫秒数，默认 180000，长轮询超过 3 分钟时显式调大。
 - 默认校验 TLS 证书；只有明确需要临时排障时才加 `--insecure`，不要在常规截图命令里固定携带。

@@ -28,6 +28,13 @@ test('--help 与 --version 不需要浏览器', () => {
     assert.equal(version.stdout.trim(), pkg.version);
 });
 
+test('cdps 短命令与 cdp-shot 兼容别名同时声明', () => {
+    assert.deepEqual(pkg.bin, {
+        cdps: './cdp-shot.js',
+        'cdp-shot': './cdp-shot.js',
+    });
+});
+
 test('缺少位置参数返回退出码 2', () => {
     const result = run([]);
     assert.equal(result.status, 2);

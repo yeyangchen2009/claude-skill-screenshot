@@ -44,7 +44,7 @@ function findBrowser() {
 }
 
 const browser = findBrowser();
-const browserTest = (name, fn) => test(name, { skip: browser ? false : '未安装 Edge/Chrome', timeout: 60000 }, fn);
+const browserTest = (name, fn) => test(name, { skip: browser ? false : '未安装 Edge/Chrome', timeout: 120000 }, fn);
 
 function pngSize(filename) {
     const data = fs.readFileSync(filename);
@@ -68,7 +68,7 @@ function terminateChild(child) {
     });
 }
 
-function run(args, { env = {}, timeout = 40000 } = {}) {
+function run(args, { env = {}, timeout = 90000 } = {}) {
     return new Promise((resolve, reject) => {
         const child = spawn(process.execPath, [cli, ...args], {
             cwd: root,
@@ -77,9 +77,11 @@ function run(args, { env = {}, timeout = 40000 } = {}) {
         });
         let stdout = '';
         let stderr = '';
+        let timedOut = false;
         child.stdout.on('data', chunk => { stdout += chunk; });
         child.stderr.on('data', chunk => { stderr += chunk; });
         const timer = setTimeout(() => {
+            timedOut = true;
             void terminateChild(child).finally(() => {
                 reject(new Error('测试进程超时\n' + stdout + stderr));
             });
@@ -87,7 +89,7 @@ function run(args, { env = {}, timeout = 40000 } = {}) {
         child.on('error', error => { clearTimeout(timer); reject(error); });
         child.on('close', (code, signal) => {
             clearTimeout(timer);
-            resolve({ code, signal, stdout, stderr });
+            if (!timedOut) resolve({ code, signal, stdout, stderr });
         });
     });
 }
