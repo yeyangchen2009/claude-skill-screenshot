@@ -1,2 +1,8 @@
 # ui-shot.ps1 运行时生成的窗口句柄缓存（含本机句柄号，不入库）
 ui-hwnd-*.txt
+
+# Node / npm 本地产物
+node_modules/
+*.tgz
+test-results/
+coverage/

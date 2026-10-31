@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>cdp-shot fixture</title>
+  <link rel="stylesheet" href="/fixture.css">
+  <style>
+    html, body { margin: 0; min-height: 1800px; }
+    #box { width: 120px; height: 80px; background: #1f6feb; color: white; }
+    #anchor { margin-top: 1400px; }
+    html.short, html.short body { min-height: 900px; }
+    html.short #anchor { display: none; }
+    @media (prefers-color-scheme: dark) { body { color-scheme: dark; } }
+  </style>
+</head>
+<body>
+  <div id="box">fixture</div>
+  <button id="button" onclick="document.documentElement.classList.add('short');document.body.dataset.clicked='yes';this.textContent='clicked'">click</button>
+  <div id="anchor">anchor</div>
+</body>
+</html>
