@@ -1,0 +1,38 @@
+{
+  "name": "cdp-shot",
+  "version": "0.1.0",
+  "description": "Zero-dependency webpage screenshots through Chrome DevTools Protocol",
+  "author": "yeyangchen2009",
+  "license": "MIT",
+  "private": false,
+  "type": "commonjs",
+  "bin": {
+    "cdp-shot": "./cdp-shot.js"
+  },
+  "files": [
+    "cdp-shot.js"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "cdp",
+    "screenshot",
+    "chrome",
+    "chromium",
+    "devtools",
+    "headless",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yeyangchen2009/claude-skill-screenshot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yeyangchen2009/claude-skill-screenshot/issues"
+  },
+  "homepage": "https://github.com/yeyangchen2009/claude-skill-screenshot#readme"
+}

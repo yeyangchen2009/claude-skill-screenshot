@@ -81,6 +81,12 @@ node ~/.claude/skills/screenshot/cdp-shot.js <url> <out.png> <width> <height> [�
 #   --headed                 有头模式；--keep-open --done-flag <f> 截图后保活，标志文件出现才退出
 ```
 
+npm 安装后可把 `node ~/.claude/skills/screenshot/cdp-shot.js` 换成 `cdp-shot`；免安装执行为 `npx cdp-shot@0.1.0 <url> <out.png> <width> <height> [选项]`。旧路径和全部位置参数保持兼容。
+
+- `--timeout 180000`：单次 CDP 请求/`--eval` Promise 的超时毫秒数，默认 180000，长轮询超过 3 分钟时显式调大。
+- 默认校验 TLS 证书；只有明确需要临时排障时才加 `--insecure`，不要在常规截图命令里固定携带。
+- 自动临时 profile 的父目录可用 `CDP_SHOT_TEMP` 指定；本机临时工作统一设到 `F:\temp\<任务名>`。持久 `--profile-dir` 退出不删，敏感登录态不入库。
+
 **登录态页面的规矩（重要）：**
 - **绝不代用户输账号密码/过 2FA**。需要登录的页面（设置页、建仓表单、后台）有三条路：请用户在自己日常浏览器里手动截图；经用户明确同意后用 `--profile-dir + --headed` 让用户自己在弹出的窗口登录一次；或用户日常浏览器已登录且明确同意你代操作时，走**路径 C（ui-shot.ps1）**直接借那个窗口拍。
 - 用户不想当场操作时用**占位图工作法**：写一个暗色 HTML 卡片（虚线框+"配图待补"徽章+保存路径/目标 URL/画面要素/注意事项，多条数据用 `?i=N` 切换），cdp-shot 截 `file:///` 生成占位图先上线，文件名就定成最终目标名；用户补拍后替换同名文件，正文零改动。占位卡 HTML 放在工作项目的 `Temp/`（gitignore）目录，随用随写。
